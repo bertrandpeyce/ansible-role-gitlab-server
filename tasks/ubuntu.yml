@@ -1,6 +1,11 @@
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: yes
+
 - name: Install Gitlab apt dependencies
   ansible.builtin.apt:
-    package:
+    pkg:
       - curl
       - openssh-server
       - ca-certificates
