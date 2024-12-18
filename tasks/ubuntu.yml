@@ -1,6 +1,9 @@
 - name: Update apt cache
   ansible.builtin.apt:
     update_cache: yes
+
+- name: Upgrade apt packages
+  ansible.builtin.apt:
     upgrade: yes
 
 - name: Install Gitlab apt dependencies
