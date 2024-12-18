@@ -1,0 +1,10 @@
+- name: Install Gitlab apt dependencies
+  ansible.builtin.apt:
+    package:
+      - curl
+      - openssh-server
+      - ca-certificates
+      - tzdata
+      - perl
+      - postfix
+
