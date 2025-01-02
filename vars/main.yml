@@ -1,2 +1,11 @@
 ---
 # vars file for ansible-role-gitlab-server
+ubuntu_gitlab_install_script_path: "/tmp/install_gitlab_ee.deb.sh"
+ubuntu_gitlab_install_script_url: "https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh"
+ubuntu_gitlab_dependencies:
+  - curl
+  - openssh-server
+  - ca-certificates
+  - tzdata
+  - perl
+  - runit
