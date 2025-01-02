@@ -4,7 +4,5 @@
   roles:
     - role: ansible-role-gitlab-server
       vars:
-        domain_name: "mytestdomain.com"
-    - role: postfix
-      vars:
+        use_postfix: true
         domain_name: "mytestdomain.com"
