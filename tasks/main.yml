@@ -1,8 +1,10 @@
 ---
-- name: 
-    role: postfix
+- name: Include the postfix role if the variable `use_postfix` is true
+  ansible.builtin.include_role:
+    name: postfix
   when: use_postfix
 
 - name: Import tasks for Ubuntu
-    import_tasks: ubuntu.yml
+  ansible.builtin.import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
+
