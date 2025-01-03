@@ -1,0 +1,5 @@
+---
+roles:
+  - name: postfix
+    src: https://github.com/bertrandpeyce/ansible-role-postfix.git
+    version: origin/main
