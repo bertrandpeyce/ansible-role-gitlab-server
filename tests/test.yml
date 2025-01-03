@@ -3,7 +3,8 @@
   become: yes
   roles:
     - role: gitlab-server
-      vars:
-        use_postfix: true
-        domain_name: "mytestdomain.com"
+      environment:
+        GITLAB_ROOT_EMAIL: "bertrand.peyce@gmail.com"
+        GITLAB_ROOT_PASSWORD: "P@ssw0rd34!!!"
+        EXTERNAL_URL: "http://localhost:8888"
     - role: postfix
