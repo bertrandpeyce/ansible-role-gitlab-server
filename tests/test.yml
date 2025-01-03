@@ -6,3 +6,4 @@
       vars:
         use_postfix: true
         domain_name: "mytestdomain.com"
+    - role: postfix
