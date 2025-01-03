@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
   roles:
-    - role: ansible-role-gitlab-server
+    - role: gitlab-server
       vars:
         use_postfix: true
         domain_name: "mytestdomain.com"
