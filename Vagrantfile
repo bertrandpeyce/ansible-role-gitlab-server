@@ -1,10 +1,11 @@
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 Vagrant.configure("2") do |config|
-  config.vm.define "test-gitlab" do |test_postfix|
+  config.vm.define "test" do |test_postfix|
     test_postfix.vm.box = "generic/ubuntu2204"
     test_postfix.vm.hostname = "test-gitlab"
     test_postfix.vm.network "private_network", type: "dhcp"
+    test_postfix.vm.network "forwarded_port", guest: 8888, host: 8888
 
     test_postfix.vm.provider :libvirt do |libvirt|
       libvirt.cpus = 2
