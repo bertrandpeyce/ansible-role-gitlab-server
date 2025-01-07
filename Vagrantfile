@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
     end
 
     test_postfix.vm.provision "ansible" do |ansible|
-      ansible.playbook = "tests/test.yml.ansible"
+      ansible.playbook = "tests/test.yml"
       #ansible.verbose = "vvvv"
       ansible.compatibility_mode = "2.0"
     end
