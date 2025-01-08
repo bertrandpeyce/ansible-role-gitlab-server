@@ -1,18 +1,31 @@
-- name: Update apt cache
-  ansible.builtin.apt:
-    update_cache: yes
-
-- name: Upgrade apt packages
-  ansible.builtin.apt:
-    upgrade: yes
-
 - name: Install Gitlab apt dependencies
   ansible.builtin.apt:
-    pkg:
-      - curl
-      - openssh-server
-      - ca-certificates
-      - tzdata
-      - perl
-      - postfix
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ubuntu_gitlab_dependencies }}"
 
+- name: Start runit service
+  ansible.builtin.service:
+    name: runit
+    state: started
+    enabled: yes
+
+- name: Download Gitlab package repository install script
+  ansible.builtin.uri:
+    url: "{{ ubuntu_gitlab_install_script_url }}"
+    dest: "{{ ubuntu_gitlab_install_script_path }}"
+    mode: '0755'
+
+- name: Install Gitlab package repository using provided script
+  ansible.builtin.command: bash "{{ ubuntu_gitlab_install_script_path }}"
+
+- name: Install Gitlab package
+  ansible.builtin.apt: 
+    name: gitlab-ee
+    state: latest
+
+- name: Reconfigure GitLab
+  ansible.builtin.command: gitlab-ctl reconfigure
+
+- name: Start GitLab
+  ansible.builtin.command: gitlab-ctl start

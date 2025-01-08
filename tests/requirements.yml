@@ -1,0 +1,7 @@
+roles:
+  - name: gitlab-server
+    src: https://github.com/bertrandpeyce/ansible-role-gitlab-server.git
+    version: origin/bpe_first_config
+  - name: postfix
+    src: https://github.com/bertrandpeyce/ansible-role-postfix.git
+    version: origin/main
