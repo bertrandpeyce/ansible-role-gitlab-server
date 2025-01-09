@@ -27,10 +27,6 @@
 - name: Install Gitlab package repository using provided script
   ansible.builtin.command: bash "{{ ubuntu_gitlab_install_script_path }}"
 
-- name: Display the EXTERNAL_URL variable
-  ansible.builtin.debug:
-    msg: "EXTERNAL_URL: {{ lookup('env', 'EXTERNAL_URL') }}"
-
 - name: Install Gitlab package
   ansible.builtin.apt: 
     name: gitlab-ee
