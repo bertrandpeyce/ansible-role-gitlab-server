@@ -25,28 +25,23 @@
 - name: Uncomment nginx[ssl_certificate] and nginx[ssl_certificate_key]
   ansible.builtin.replace:
     path: /etc/gitlab/gitlab.rb
-    regexp: '^#\s*(nginx\[\s*\'ssl_certificate\'\s*\].*)$'
+    regexp: "^#\\s*(nginx\\[\\s*'ssl_certificate'\\s*\\].*)$"
     replace: '\1'
     backup: yes
   ansible.builtin.replace:
     path: /etc/gitlab/gitlab.rb
-    regexp: '^#\s*(nginx\[\s*\'ssl_certificate_key\'\s*\].*)$'
+    regexp: "^#\\s*(nginx\\[\\s*'ssl_certificate_key'\\s*\\].*)$"
     replace: '\1'
-
-  ansible.builtin.replace:
-    path: /etc/gitlab/gitlab.rb
-    regexp: '^# nginx\["ssl_certificate_key"\]'
-    replace: 'nginx["ssl_certificate_key"]'
 
 - name: Change gitlab config nginx[ssl_certificate]
   ansible.builtin.replace:
     path: /etc/gitlab/gitlab.rb
-    regexp: 'nginx\["ssl_certificate"\]\s+".*?"'
-    replace: 'nginx["ssl_certificate"] = "/etc/letsencrypt/live/{{ external_url }}/fullchain.pem"'
+    regexp: "nginx\\['ssl_certificate'\\]\\s+\".*?\""
+    replace: "nginx['ssl_certificate'] = \"/etc/letsencrypt/live/{{ external_url }}/fullchain.pem\""
   ansible.builtin.replace:
     path: /etc/gitlab/gitlab.rb
-    regexp: 'nginx\["ssl_certificate_key"\]\s+".*?"'
-    replace: 'nginx["ssl_certificate_key"] = "/etc/letsencrypt/live/{{ external_url }}/privkey.pem"'
+    regexp: "nginx\\['ssl_certificate_key'\\]\\s+\".*?\""
+    replace: "nginx['ssl_certificate_key'] = \"/etc/letsencrypt/live/{{ external_url }}/privkey.pem\""
 
 - name: Reconfigure GitLab
   ansible.builtin.command: gitlab-ctl reconfigure
