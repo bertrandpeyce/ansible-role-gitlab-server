@@ -9,4 +9,3 @@ ubuntu_gitlab_dependencies:
   - tzdata
   - perl
   - runit
-  - nginx

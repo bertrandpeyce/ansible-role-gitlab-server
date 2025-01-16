@@ -42,4 +42,4 @@
 
 - name: Setup Letsencrypt TLS certificate
   include_tasks: setup_letsencryp_tls_cert.yml
-  when: setup_letsencrypt
+  when: do_setup_letsencrypt
