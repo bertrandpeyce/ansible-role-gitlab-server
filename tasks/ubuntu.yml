@@ -31,9 +31,15 @@
   ansible.builtin.apt: 
     name: gitlab-ee
     state: latest
+  environment:
+    EXTERNAL_URL: "http://{{ external_url }}"
 
 - name: Reconfigure GitLab
   ansible.builtin.command: gitlab-ctl reconfigure
 
 - name: Start GitLab
   ansible.builtin.command: gitlab-ctl start
+
+- name: Setup Letsencrypt TLS certificate
+  include_tasks: setup_letsencryp_tls_cert.yml
+  when: setup_letsencrypt

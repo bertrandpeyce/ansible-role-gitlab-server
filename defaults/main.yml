@@ -1,2 +1,6 @@
 ---
+external_url: gitlab.example.com
 use_postfix: false
+use_letsencrypt: false
+cert_email: admin@example.com
+
