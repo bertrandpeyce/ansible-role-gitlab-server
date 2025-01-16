@@ -35,8 +35,8 @@
 - name: Change gitlab config external_url
   ansible.builtin.replace:
     path: /etc/gitlab/gitlab.rb
-    regexp: 'external_url\s+".*?"'
-    replace: 'external_url "{{ external_url }}"'
+    regexp: "external_url\\s+\".*?\""
+    replace: "external_url \"{{ external_url }}\""
     backup: yes
 
 - name: Stop GitLab
