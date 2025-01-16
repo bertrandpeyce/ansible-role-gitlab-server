@@ -8,7 +8,7 @@
 
 - name: Run certbot
   ansible.builtin.shell: |
-    certbot certonly --standalone --agree-tos --email {{ cert_email }} --preferred-challenges http -d {{ domain_name }} --non-interactive
+    certbot certonly --standalone --agree-tos --email {{ cert_email }} --preferred-challenges http -d {{ external_url }} --non-interactive
 
 - name: Backup gitlab.rb
   ansible.builtin.copy:
