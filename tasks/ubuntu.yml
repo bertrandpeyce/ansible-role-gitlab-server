@@ -31,15 +31,19 @@
   ansible.builtin.apt: 
     name: gitlab-ee
     state: latest
-  environment:
-    EXTERNAL_URL: "http://{{ external_url }}"
+
+- name: Change gitlab config external_url
+  ansible.builtin.replace:
+    path: /etc/gitlab/gitlab.rb
+    regexp: 'external_url\s+".*?"'
+    replace: 'external_url "{{ external_url }}"'
+    backup: yes
+
+- name: Stop GitLab
+  ansible.builtin.command: gitlab-ctl stop
 
 - name: Reconfigure GitLab
   ansible.builtin.command: gitlab-ctl reconfigure
 
 - name: Start GitLab
   ansible.builtin.command: gitlab-ctl start
-
-- name: Setup Letsencrypt TLS certificate
-  include_tasks: setup_letsencryp_tls_cert.yml
-  when: do_setup_letsencrypt
