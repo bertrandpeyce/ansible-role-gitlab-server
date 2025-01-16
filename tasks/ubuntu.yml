@@ -32,12 +32,11 @@
     name: gitlab-ee
     state: latest
 
-- name: Change gitlab config external_url
+- name: Replace external_url with a dynamic URL in gitlab.rb
   ansible.builtin.replace:
     path: /etc/gitlab/gitlab.rb
-    regexp: "external_url\\s+\".*?\""
-    replace: "external_url \"{{ external_url }}\""
-    backup: yes
+    regexp: "^external_url\\s+'.*'"
+    replace: "external_url '{{ external_url }}'"
 
 - name: Stop GitLab
   ansible.builtin.command: gitlab-ctl stop
